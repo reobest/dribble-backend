@@ -7,8 +7,11 @@ const dotenv = require('dotenv');
 const app = express();
 const port = 4001; 
 dotenv.config();
-app.use(cors());
-app.use('/public/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
+app.use(cors({
+  origin:['http://localhost:3000','https://lively-lebkuchen-d73979.netlify.app'],
+  credentials:true,
+  optionsSuccessStatus:200,
+}))
 cloudinary.config({
     cloud_name:process.env.CLOUDINARY_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
